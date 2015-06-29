@@ -1761,7 +1761,7 @@ ac_config_headers="$ac_config_headers config.h"
 
 
 case "$target" in
-    basic | curses | ncurses | pdcurses | dosvga | falcon | ps2 | sdl | svgalib | windx | x11 | x11-shm | x11-motif | x11-xview | x11-xview-shm)
+    basic | curses | ncurses | pdcurses | dosvga | falcon | ps2 | ipod-hotdog | ipod-sdl | sdl | svgalib | windx | x11 | x11-shm | x11-motif | x11-xview | x11-xview-shm)
         a8_target="$target"
         ;;
     shm | motif | xview | xview-shm)
@@ -1782,6 +1782,8 @@ case "$target" in
         echo "    falcon           (Atari Falcon systems only)"
         echo "    ps2              (Sony PlayStation 2)"
         echo "    svgalib          (Linux system with SVGALib library)"
+        echo "    ipod-hotdog      (iPodLinux with optimized hotdog library and COP)"
+        echo "    ipod-sdl         (iPodLinux with Simple Direct Media Layer library)"
         echo "    sdl              (System with Simple Direct Media Layer library)"
         echo "    windx            (Windows with DirectX only)"
         echo "    x11              (Standard X11)"
@@ -6320,6 +6322,39 @@ echo "$as_me: error: \"c library not found!\"" >&2;}
 fi
 
         OBJS="atari_ps2.o ps2kbd.s usbd.s audsrv.s"
+        ;;
+    ipod-hotdog)
+
+cat >>confdefs.h <<\_ACEOF
+#define SUPPORTS_ATARI_CONFIGURE 1
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define SUPPORTS_ATARI_CONFIGSAVE 1
+_ACEOF
+
+        LIBS="$LIBS"
+        OBJS="atari_ipod_hotdog.o"
+        ;;
+    ipod-sdl)
+
+cat >>confdefs.h <<\_ACEOF
+#define SDL 1
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define SUPPORTS_ATARI_CONFIGURE 1
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define SUPPORTS_ATARI_CONFIGSAVE 1
+_ACEOF
+
+        LIBS="$LIBS"
+        OBJS="atari_ipod_sdl.o"
         ;;
     sdl)
 
